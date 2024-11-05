@@ -65,4 +65,23 @@ describe('views/admin reducers', () => {
             expect(actual).toBe(adminConsoleChannelManagementTablePropertiesInitialState);
         });
     });
+
+    describe('user reducer', () => {
+        const newState = {
+            pageIndex: 10,
+            searchTerm: 'hello',
+            sortColumn: 'id',
+            sortIsDescending: true,
+        };
+
+        test('set state to new state', () => {
+            const actual = adminConsoleUsersManagementTableProperties(adminConsoleUserManagementTablePropertiesInitialState, {type: ActionTypes.SET_ADMIN_CONSOLE_USER_MANAGEMENT_TABLE_PROPERTIES, data: newState});
+            expect(actual).toBe(newState);
+        });
+
+        test('clear state', () => {
+            const actual = adminConsoleUsersManagementTableProperties(adminConsoleUserManagementTablePropertiesInitialState, {type: ActionTypes.CLEAR_ADMIN_CONSOLE_USER_MANAGEMENT_TABLE_PROPERTIES, data: newState});
+            expect(actual).toBe(adminConsoleUserManagementTablePropertiesInitialState);
+        });
+    });
 });

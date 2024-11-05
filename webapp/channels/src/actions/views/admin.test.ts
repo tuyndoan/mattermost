@@ -4,8 +4,6 @@
 import type {MockStoreEnhanced} from 'redux-mock-store';
 
 import {setAdminConsoleUsersManagementTableProperties, setAdminConsoleTeamsManagementTableProperties, setAdminConsoleChannelsManagementTableProperties} from 'actions/views/admin';
-import {adminConsoleChannelManagementTablePropertiesInitialState, adminConsoleTeamManagementTablePropertiesInitialState, adminConsoleUserManagementTablePropertiesInitialState} from 'reducers/views/admin';
-import {getAdminConsoleChannelManagementTableProperties, getAdminConsoleTeamManagementTableProperties, getAdminConsoleUserManagementTableProperties} from 'selectors/views/admin';
 
 import mockStore from 'tests/test_store';
 import {ActionTypes} from 'utils/constants';
