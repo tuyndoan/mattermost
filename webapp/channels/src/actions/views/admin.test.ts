@@ -36,17 +36,19 @@ describe('test admin state', () => {
 
             await store.dispatch(setAdminConsoleTeamsManagementTableProperties(settings));
             const compareStore = mockStore(initialState);
-            compareStore.dispatch({
+            await compareStore.dispatch({
                 type: ActionTypes.SET_ADMIN_CONSOLE_TEAM_MANAGEMENT_TABLE_PROPERTIES,
+                data: settings,
             });
             expect(store.getActions()).toEqual(compareStore.getActions());
         });
 
         test('resets global state for Team Management Table Properties', async () => {
-            await store.dispatch(setAdminConsoleChannelsManagementTableProperties());
+            await store.dispatch(setAdminConsoleTeamsManagementTableProperties());
             const compareStore = mockStore(initialState);
             compareStore.dispatch({
                 type: ActionTypes.CLEAR_ADMIN_CONSOLE_TEAM_MANAGEMENT_TABLE_PROPERTIES,
+                data: null,
             });
             expect(store.getActions()).toEqual(compareStore.getActions());
         });
@@ -62,6 +64,7 @@ describe('test admin state', () => {
             const compareStore = mockStore(initialState);
             compareStore.dispatch({
                 type: ActionTypes.SET_ADMIN_CONSOLE_CHANNEL_MANAGEMENT_TABLE_PROPERTIES,
+                data: settings,
             });
             expect(store.getActions()).toEqual(compareStore.getActions());
         });
@@ -70,7 +73,8 @@ describe('test admin state', () => {
             await store.dispatch(setAdminConsoleChannelsManagementTableProperties());
             const compareStore = mockStore(initialState);
             compareStore.dispatch({
-                type: ActionTypes.SET_ADMIN_CONSOLE_CHANNEL_MANAGEMENT_TABLE_PROPERTIES,
+                type: ActionTypes.CLEAR_ADMIN_CONSOLE_CHANNEL_MANAGEMENT_TABLE_PROPERTIES,
+                data: null,
             });
             expect(store.getActions()).toEqual(compareStore.getActions());
         });
@@ -87,6 +91,7 @@ describe('test admin state', () => {
             const compareStore = mockStore(initialState);
             compareStore.dispatch({
                 type: ActionTypes.SET_ADMIN_CONSOLE_USER_MANAGEMENT_TABLE_PROPERTIES,
+                data: settings,
             });
             expect(store.getActions()).toEqual(compareStore.getActions());
         });
@@ -95,7 +100,8 @@ describe('test admin state', () => {
             await store.dispatch(setAdminConsoleUsersManagementTableProperties());
             const compareStore = mockStore(initialState);
             compareStore.dispatch({
-                type: ActionTypes.SET_ADMIN_CONSOLE_USER_MANAGEMENT_TABLE_PROPERTIES,
+                type: ActionTypes.CLEAR_ADMIN_CONSOLE_USER_MANAGEMENT_TABLE_PROPERTIES,
+                data: null,
             });
             expect(store.getActions()).toEqual(compareStore.getActions());
         });

@@ -1,11 +1,9 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-// import {adminConsoleTeamManagementTablePropertiesInitialState, adminConsoleChannelManagementTablePropertiesInitialState, adminConsoleUserManagementTablePropertiesInitialState} from 'reducers/views/admin';
-
 import {ActionTypes} from 'utils/constants';
 
-import {needsLoggedInLimitReachedCheck, adminConsoleTeamManagementTableProperties, adminConsoleChannelManagementTableProperties, adminConsoleUsersManagementTableProperties, 
+import {needsLoggedInLimitReachedCheck, adminConsoleTeamManagementTableProperties, adminConsoleChannelManagementTableProperties, adminConsoleUserManagementTableProperties,
     adminConsoleTeamManagementTablePropertiesInitialState, adminConsoleChannelManagementTablePropertiesInitialState, adminConsoleUserManagementTablePropertiesInitialState} from './admin';
 
 describe('views/admin reducers', () => {
@@ -75,12 +73,12 @@ describe('views/admin reducers', () => {
         };
 
         test('set state to new state', () => {
-            const actual = adminConsoleUsersManagementTableProperties(adminConsoleUserManagementTablePropertiesInitialState, {type: ActionTypes.SET_ADMIN_CONSOLE_USER_MANAGEMENT_TABLE_PROPERTIES, data: newState});
+            const actual = adminConsoleUserManagementTableProperties(adminConsoleUserManagementTablePropertiesInitialState, {type: ActionTypes.SET_ADMIN_CONSOLE_USER_MANAGEMENT_TABLE_PROPERTIES, data: newState});
             expect(actual).toBe(newState);
         });
 
         test('clear state', () => {
-            const actual = adminConsoleUsersManagementTableProperties(adminConsoleUserManagementTablePropertiesInitialState, {type: ActionTypes.CLEAR_ADMIN_CONSOLE_USER_MANAGEMENT_TABLE_PROPERTIES, data: newState});
+            const actual = adminConsoleUserManagementTableProperties(adminConsoleUserManagementTablePropertiesInitialState, {type: ActionTypes.CLEAR_ADMIN_CONSOLE_USER_MANAGEMENT_TABLE_PROPERTIES, data: newState});
             expect(actual).toBe(adminConsoleUserManagementTablePropertiesInitialState);
         });
     });

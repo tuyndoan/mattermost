@@ -163,7 +163,7 @@ class Filter extends React.PureComponent<Props, State> {
             keys.forEach((filterKey: string) => {
                 if (values[filterKey].value instanceof Array) {
                     defaultProps[key].values[filterKey].value = [];
-                } else if (values[filterKey].value instanceof String) {
+                } else if (typeof values[filterKey].value === 'string') {
                     defaultProps[key].values[filterKey].value = '';
                 } else if (values[filterKey].value) {
                     defaultProps[key].values[filterKey].value = false;
