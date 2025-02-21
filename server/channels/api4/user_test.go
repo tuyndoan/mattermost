@@ -4194,6 +4194,11 @@ func TestSetDefaultProfileImage(t *testing.T) {
 	require.Error(t, err)
 	CheckForbiddenStatus(t, resp)
 
+	th.AddPermissionToRole(model.PermissionEditOtherUsers.Id, model.SystemUserRoleId)
+	_, err = th.Client.SetDefaultProfileImage(context.Background(), th.SystemAdminUser.Id)
+	require.Error(t, err)
+	CheckForbiddenStatus(t, resp)
+
 	// status code returns either forbidden or unauthorized
 	// note: forbidden is set as default at Client4.SetDefaultProfileImage when request is terminated early by server
 	_, err = th.Client.Logout(context.Background())
