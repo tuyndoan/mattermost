@@ -385,7 +385,7 @@ func (scs *Service) upsertSyncPost(post *model.Post, targetChannel *model.Channe
 			return nil, fmt.Errorf("post sync failed: %w", ErrRemoteIDMismatch)
 		}
 
-		rpost, appErr = scs.app.CreatePost(rctx, post, targetChannel, true, true)
+		rpost, appErr = scs.app.CreatePost(rctx, post, targetChannel, model.CreatePostFlags{TriggerWebhooks: true, SetOnline: true})
 		if appErr == nil {
 			scs.server.Log().Log(mlog.LvlSharedChannelServiceDebug, "Created sync post",
 				mlog.String("post_id", post.Id),
@@ -403,7 +403,7 @@ func (scs *Service) upsertSyncPost(post *model.Post, targetChannel *model.Channe
 		}
 	} else if post.EditAt > rpost.EditAt || post.Message != rpost.Message {
 		// update post
-		rpost, appErr = scs.app.UpdatePost(request.EmptyContext(scs.server.Log()), post, false)
+		rpost, appErr = scs.app.UpdatePost(request.EmptyContext(scs.server.Log()), post, nil)
 		if appErr == nil {
 			scs.server.Log().Log(mlog.LvlSharedChannelServiceDebug, "Updated sync post",
 				mlog.String("post_id", post.Id),

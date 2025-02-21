@@ -14,7 +14,12 @@ exports[`components/admin_console/permission_schemes_settings/permissions_scheme
       confirmButtonText={
         <Memo(LoadingWrapper)
           loading={false}
-          text="Deleting..."
+          text={
+            Object {
+              "defaultMessage": "Deleting...",
+              "id": "admin.permissions.permissionsSchemeSummary.deleting",
+            }
+          }
         >
           <Memo(MemoizedFormattedMessage)
             defaultMessage="Yes, Delete"
@@ -132,7 +137,12 @@ exports[`components/admin_console/permission_schemes_settings/permissions_scheme
       confirmButtonText={
         <Memo(LoadingWrapper)
           loading={false}
-          text="Deleting..."
+          text={
+            Object {
+              "defaultMessage": "Deleting...",
+              "id": "admin.permissions.permissionsSchemeSummary.deleting",
+            }
+          }
         >
           <Memo(MemoizedFormattedMessage)
             defaultMessage="Yes, Delete"
@@ -263,8 +273,6 @@ exports[`components/admin_console/permission_schemes_settings/permissions_scheme
       Team 8
     </span>
     <WithTooltip
-      id="id-extra-teams-overlay"
-      placement="bottom"
       title="Team 9, Team 10"
     >
       <span
@@ -300,7 +308,12 @@ exports[`components/admin_console/permission_schemes_settings/permissions_scheme
       confirmButtonText={
         <Memo(LoadingWrapper)
           loading={false}
-          text="Deleting..."
+          text={
+            Object {
+              "defaultMessage": "Deleting...",
+              "id": "admin.permissions.permissionsSchemeSummary.deleting",
+            }
+          }
         >
           <Memo(MemoizedFormattedMessage)
             defaultMessage="Yes, Delete"

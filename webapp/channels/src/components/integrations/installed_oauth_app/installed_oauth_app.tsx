@@ -2,7 +2,7 @@
 // See LICENSE.txt for license information.
 
 import React from 'react';
-import {FormattedMessage} from 'react-intl';
+import {defineMessages, FormattedMessage} from 'react-intl';
 import {Link} from 'react-router-dom';
 
 import type {OAuthApp} from '@mattermost/types/integrations';
@@ -10,8 +10,6 @@ import type {Team} from '@mattermost/types/teams';
 
 import CopyText from 'components/copy_text';
 import FormError from 'components/form_error';
-
-import * as Utils from 'utils/utils';
 
 import DeleteIntegrationLink from '../delete_integration_link';
 
@@ -159,9 +157,19 @@ export default class InstalledOAuthApp extends React.PureComponent<InstalledOAut
 
         let isTrusted;
         if (oauthApp.is_trusted) {
-            isTrusted = Utils.localizeMessage({id: 'installed_oauth_apps.trusted.yes', defaultMessage: 'Yes'});
+            isTrusted = (
+                <FormattedMessage
+                    id='installed_oauth_apps.trusted.yes'
+                    defaultMessage='Yes'
+                />
+            );
         } else {
-            isTrusted = Utils.localizeMessage({id: 'installed_oauth_apps.trusted.no', defaultMessage: 'No'});
+            isTrusted = (
+                <FormattedMessage
+                    id='installed_oauth_apps.trusted.no'
+                    defaultMessage='No'
+                />
+            );
         }
 
         let showHide;
@@ -182,13 +190,10 @@ export default class InstalledOAuthApp extends React.PureComponent<InstalledOAut
             clientSecret = (
                 <span className='item-details__token'>
                     <FormattedMessage
-                        id='installedIntegrations.clientSecret'
-                        defaultMessage='Client Secret: <b>{clientSecret}</b>'
-                        values={{
-                            clientSecret: this.state.clientSecret,
-                            b: (chunks: string) => <b>{chunks}</b>,
-                        }}
+                        id='installed_integrations.client_secret'
+                        defaultMessage='Client Secret: '
                     />
+                    <strong>{this.state.clientSecret}</strong>
                 </span>
             );
         } else {
@@ -207,20 +212,12 @@ export default class InstalledOAuthApp extends React.PureComponent<InstalledOAut
             clientSecret = (
                 <span className='item-details__token'>
                     <FormattedMessage
-                        id='installedIntegrations.clientSecret'
-                        defaultMessage='Client Secret: <b>{clientSecret}</b>'
-                        values={{
-                            clientSecret: this.state.clientSecret,
-                            b: (chunks: string) => <b>{chunks}</b>,
-                        }}
+                        id='installed_integrations.client_secret'
+                        defaultMessage='Client Secret: '
                     />
+                    <strong>{this.state.clientSecret}</strong>
                     <CopyText
-                        tooltip={
-                            <FormattedMessage
-                                id='integrations.copy_client_secret'
-                                defaultMessage='Copy Client Secret'
-                            />
-                        }
+                        label={messages.copyClientSecret}
                         value={this.state.clientSecret}
                     />
                 </span>
@@ -296,32 +293,21 @@ export default class InstalledOAuthApp extends React.PureComponent<InstalledOAut
                     <div className='item-details__row'>
                         <span className='item-details__url word-break--all'>
                             <FormattedMessage
-                                id='installedOauthApps.isTrusted'
-                                defaultMessage='Is Trusted: <b>{isTrusted}</b>'
-                                values={{
-                                    isTrusted,
-                                    b: (chunks: string) => <b>{chunks}</b>,
-                                }}
+                                id='installed_oauth_apps.is_trusted'
+                                defaultMessage='Is Trusted: '
                             />
+                            <strong>{isTrusted}</strong>
                         </span>
                     </div>
                     <div className='item-details__row'>
                         <span className='item-details__token'>
                             <FormattedMessage
-                                id='installedIntegrations.clientId'
-                                defaultMessage='Client ID: <b>{clientId}</b>'
-                                values={{
-                                    clientId: oauthApp.id,
-                                    b: (chunks: string) => <b>{chunks}</b>,
-                                }}
+                                id='installed_integrations.client_id'
+                                defaultMessage='Client ID: '
                             />
+                            <strong>{oauthApp.id}</strong>
                             <CopyText
-                                tooltip={
-                                    <FormattedMessage
-                                        id='integrations.copy_client_id'
-                                        defaultMessage='Copy Client Id'
-                                    />
-                                }
+                                label={messages.copyClientId}
                                 value={oauthApp.id}
                             />
                         </span>
@@ -364,3 +350,14 @@ export default class InstalledOAuthApp extends React.PureComponent<InstalledOAut
         );
     }
 }
+
+const messages = defineMessages({
+    copyClientId: {
+        id: 'integrations.copy_client_id',
+        defaultMessage: 'Copy Client Id',
+    },
+    copyClientSecret: {
+        id: 'integrations.copy_client_secret',
+        defaultMessage: 'Copy Client Secret',
+    },
+});

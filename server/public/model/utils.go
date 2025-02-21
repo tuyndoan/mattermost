@@ -631,6 +631,12 @@ func IsValidEmail(email string) bool {
 		return false
 	}
 
+	// mail.ParseAddress accepts quoted strings for the address
+	// which can lead to sending to the wrong email address
+	// check for multiple '@' symbols and invalidate
+	if strings.Count(email, "@") > 1 {
+		return false
+	}
 	return true
 }
 
@@ -854,7 +860,7 @@ func IsCloud() bool {
 	return os.Getenv("MM_CLOUD_INSTALLATION_ID") != ""
 }
 
-func sliceToMapKey(s ...string) map[string]any {
+func SliceToMapKey(s ...string) map[string]any {
 	m := make(map[string]any)
 	for i := range s {
 		m[s[i]] = struct{}{}
